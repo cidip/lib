@@ -1,0 +1,19 @@
+{
+    "name": "cidip/lib",
+    "description": "cidip lib",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "cidip",
+            "email": "service@cidip.cn"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "cidip\\": "cidip"
+        }
+    }
+}
