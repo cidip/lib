@@ -7,7 +7,7 @@
  */
 namespace cidip\lib\model;
 use think\Model;
-class Topic extends Model{
+class User extends Model{
 
     protected $autoWriteTimestamp = 'datetime';
 
@@ -17,13 +17,5 @@ class Topic extends Model{
 
     protected $update = [];
 
-    public function user()
-    {
-        return $this->belongsTo('User','userid','userid');
-    }
-
-    public function category(){
-        return $this->belongsTo('Category','categoryid','categoryid');
-    }
 
 }
