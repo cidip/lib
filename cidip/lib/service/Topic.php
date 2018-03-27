@@ -18,8 +18,8 @@ class Topic extends Model{
     }
 
     //首页资讯数据分页
-    public function listIndexTopic($page_index,$page_size){
-        $list = $this->logic->listData(null,'1,2',$page_size,$page_index);
+    public function listIndexTopic(){
+        $list = $this->logic->listData(null,'1,2',3,1);
         return $list;
     }
 
