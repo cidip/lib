@@ -32,7 +32,7 @@ class Topic extends Model{
     //资讯分类列表
     public function listTopicCategory(){
         $categoryLogic = new CategoryLogic();
-        $list = $categoryLogic->listAllData('Ip');
+        $list = $categoryLogic->listAllData('Topic');
         return $list;
     }
 }
