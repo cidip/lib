@@ -15,4 +15,14 @@ class Category extends Model{
         $list = CategoryModel::where(['type'=>$type,'status'=> '1'])->order('orderno')->select();
         return $list;
     }
+
+    public function listAllDataExcept($type = 'Ip',$exceptColumns){
+        $list = CategoryModel::where(['type'=>$type,'status'=> '1'])->field($exceptColumns,true)->order('orderno')->select();
+        return $list;
+    }
+
+    public function listAllDataInclude($type = 'Ip',$exceptColumns){
+        $list = CategoryModel::where(['type'=>$type,'status'=> '1'])->field($exceptColumns)->order('orderno')->select();
+        return $list;
+    }
 }
