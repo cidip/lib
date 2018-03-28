@@ -23,16 +23,22 @@ class Topic extends Model{
         return $list;
     }
 
-    //读取资讯数据
-    public function loadTopic($topic_id){
-        $data = $this->logic->loadData($topic_id);
-        return $data;
-    }
-
     //资讯分类列表
     public function listTopicCategory(){
         $categoryLogic = new CategoryLogic();
         $list = $categoryLogic->listAllDataInclude('Topic','categoryid,name');
         return $list;
+    }
+
+    //资讯列表查询
+    public function queryTopics($categoryId,$pageSize,$pageIndex){
+        $list = $this->logic->listData($categoryId,'1,2',$pageSize,$pageIndex);
+        return $list;
+    }
+
+    //读取资讯数据
+    public function loadTopic($topic_id){
+        $data = $this->logic->loadData($topic_id);
+        return $data;
     }
 }
