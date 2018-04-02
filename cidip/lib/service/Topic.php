@@ -32,7 +32,7 @@ class Topic extends Model{
 
     //资讯列表查询
     public function queryTopics($categoryId,$pageSize,$pageIndex){
-        $list = $this->logic->listData($categoryId,'1,2',$pageSize,$pageIndex);
+        $list = $this->logic->queryDataWithColumns($categoryId,'1,2',$pageSize,$pageIndex,'topicid,title,cover,categoryid,link,comments_count,likes_count,collects_count,view_count,create_time,userid,is_hot',false);
         return $list;
     }
 

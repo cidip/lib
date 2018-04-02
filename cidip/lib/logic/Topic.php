@@ -26,7 +26,7 @@ class Topic extends Model
         }
     }
 
-    public function listData($categoryid, $type, $pagesize, $pageindex = 1)
+    public function queryData($categoryid, $type, $pagesize, $pageindex = 1)
     {
         $map['status'] = ['=', 1];
         $map['type'] = ['in',$type];
@@ -36,7 +36,6 @@ class Topic extends Model
         $list = TopicModel::where($map)
             ->order('is_hot desc,create_time desc')
             ->limit(($pageindex - 1) * $pagesize, $pagesize)
-            ->field('topicid,title,cover,categoryid,link,comments_count,likes_count,collects_count,view_count,create_time,userid,is_hot')
             ->select();
 
         $total = TopicModel::where('type', 'in', $type)
@@ -46,6 +45,27 @@ class Topic extends Model
         $result['total'] = $total;
         return $result;
     }
+
+    public function queryDataWithColumns($categoryid, $type, $pagesize, $pageindex = 1,$columnsStr,$isExcept){
+        $map['status'] = ['=', 1];
+        $map['type'] = ['in',$type];
+        if (isset($categoryid)) {
+            $map['categoryid'] = $categoryid;
+        }
+        $list = TopicModel::where($map)
+            ->order('is_hot desc,create_time desc')
+            ->limit(($pageindex - 1) * $pagesize, $pagesize)
+            ->field($columnsStr,$isExcept)
+            ->select();
+
+        $total = TopicModel::where('type', 'in', $type)
+            ->where($map)
+            ->count();
+        $result['list'] = $list;
+        $result['total'] = $total;
+        return $result;
+    }
+
 
     public function loadData($topic_id){
         $result = TopicModel::get($topic_id);
